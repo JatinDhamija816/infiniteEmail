@@ -1,34 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import React, { useState } from 'react'
+import axios from 'axios'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
+  const [email, setEmail] = useState('')
+  const [number, setNumber] = useState('')
+  const handleClick = async (e) => {
+    e.preventDefault()
+    try {
+      await axios.post('http://localhost:8000/send', { email, number })
+    } catch (error) {
+      alert('Error While Sending Email')
+      console.log(error)
+    }
+  }
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div style={{}}>
+      <div style={{ margin: '10px' }}>
+        <input style={{ padding: "10px", fontSize: '1rem', outline: 'none' }} type="email" placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div style={{ margin: '10px' }}>
+        <input style={{ padding: "10px", fontSize: '1rem', outline: 'none' }} type="text" placeholder='Enter Number' value={number} onChange={(e) => setNumber(e.target.value)} />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <div style={{ margin: '10px' }}>
+        <button style={{ padding: "10px", fontSize: '1rem' }} onClick={handleClick}>Start</button>
+      </div>
+    </div >
   )
 }
 
