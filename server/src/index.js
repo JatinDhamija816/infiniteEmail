@@ -25,8 +25,8 @@ app.post('/send', async (req, res) => {
             })
             function getText() {
                 let alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-                num1 = (Math.random() * 10).toFixed(0)
-                text = ''
+                let num1 = (Math.random() * 10).toFixed(0)
+                let text = ''
                 for (let i = 0; i < num1; i++) {
                     let num = (Math.random() * 25).toFixed(0)
                     text += alpha[num]
@@ -35,11 +35,13 @@ app.post('/send', async (req, res) => {
             }
             let GeneratePara = () => {
                 let x = number * 100
-                text = ''
+                let text = ''
                 for (let i = 0; i < x; i++) {
                     text += getText()
                     text += ' '
                 }
+                console.log('text is ')
+                console.log(text)
                 return text
             }
             const mailOptions = {
