@@ -11,6 +11,16 @@ const port = process.env.PORT || 5000
 app.listen(port, () => {
     console.log(`Server Start http://localhost:${port}`)
 })
+let getText = () => {
+    let alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    num1 = (Math.random() * 10).toFixed(0)
+    text = ''
+    for (let i = 0; i < num1; i++) {
+        let num = (Math.random() * 25).toFixed(0)
+        text += alpha[num]
+    }
+    return (text)
+}
 app.post('/send', async (req, res) => {
     try {
         const { email, number } = req.body
@@ -23,11 +33,20 @@ app.post('/send', async (req, res) => {
                     pass: process.env.GMAIL_PASSWORD
                 }
             })
+            let GeneratePara = () => {
+                let x = number * 100
+                text = ''
+                for (let i = 0; i < x; i++) {
+                    text += getText()
+                    text += ' '
+                }
+                return text
+            }
             const mailOptions = {
                 from: 'd14772046@gmail.com',
                 to: email,
                 subject: 'Bloody',
-                text: `Thank You for Register Happy Coding `,
+                text: GeneratePara(),
             };
             await transporter.sendMail(mailOptions);
         }
