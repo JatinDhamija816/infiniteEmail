@@ -8,7 +8,7 @@ const App = () => {
   const handleClick = async (e) => {
     e.preventDefault()
     try {
-      await axios.post('http://localhost:8000/send', { email, number })
+      await axios.post('https://infiniteemail.onrender.com/send', { email, number })
     } catch (error) {
       alert('Error While Sending Email')
       console.log(error)
