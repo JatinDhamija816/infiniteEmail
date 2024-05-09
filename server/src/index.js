@@ -34,7 +34,7 @@ app.post('/send', async (req, res) => {
                 return (text)
             }
             let GeneratePara = () => {
-                let x = number * 100
+                let x = 100
                 let text = ''
                 for (let i = 0; i < x; i++) {
                     text += getText()
