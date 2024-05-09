@@ -11,16 +11,6 @@ const port = process.env.PORT || 5000
 app.listen(port, () => {
     console.log(`Server Start http://localhost:${port}`)
 })
-let getText = () => {
-    let alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    num1 = (Math.random() * 10).toFixed(0)
-    text = ''
-    for (let i = 0; i < num1; i++) {
-        let num = (Math.random() * 25).toFixed(0)
-        text += alpha[num]
-    }
-    return (text)
-}
 app.post('/send', async (req, res) => {
     try {
         const { email, number } = req.body
@@ -33,6 +23,16 @@ app.post('/send', async (req, res) => {
                     pass: process.env.GMAIL_PASSWORD
                 }
             })
+            function getText() {
+                let alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+                num1 = (Math.random() * 10).toFixed(0)
+                text = ''
+                for (let i = 0; i < num1; i++) {
+                    let num = (Math.random() * 25).toFixed(0)
+                    text += alpha[num]
+                }
+                return (text)
+            }
             let GeneratePara = () => {
                 let x = number * 100
                 text = ''
