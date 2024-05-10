@@ -40,8 +40,6 @@ app.post('/send', async (req, res) => {
                     text += getText()
                     text += ' '
                 }
-                console.log('text is ')
-                console.log(text)
                 return text
             }
             const mailOptions = {
@@ -59,7 +57,8 @@ app.post('/send', async (req, res) => {
         console.log(error)
         return res.status(500).send({
             succes: false,
-            message: 'Error while sending email'
+            message: 'Error while sending email',
+            error
         })
     }
 })
